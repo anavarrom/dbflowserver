@@ -46,6 +46,7 @@ public class CacheConfiguration {
             createCache(cm, dbflow.server.domain.User.class.getName());
             createCache(cm, dbflow.server.domain.Authority.class.getName());
             createCache(cm, dbflow.server.domain.User.class.getName() + ".authorities");
+            createCache(cm, dbflow.server.domain.Appointment.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
