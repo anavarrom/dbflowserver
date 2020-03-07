@@ -1,0 +1,70 @@
+entity Appointment {
+	title String,
+	description String,
+	emittedDate LocalDate,
+	start LocalDate,
+	end LocalDate,
+	allDay Boolean,
+	editable Boolean,
+	backgroundColor String,
+	textColor String,
+}
+// Set pagination options
+paginate Appointment with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl //except Employee, Job
+
+// Set an angular suffix
+angularSuffix * with mySuffix
+
+
+// an ignored comment
+/** not an ignored comment */
+
+//enum Language {
+//    FRENCH, ENGLISH, SPANISH
+//}
+
+//relationship OneToOne {
+//	Country{region} to Region
+//}
+
+//relationship ManyToMany {
+//	Job{task(title)} to Task{job}
+//}
+
+// defining multiple OneToMany relationships with comments
+/*relationship OneToMany {
+	Employee{job} to Job,
+	Department{employee} to
+	Employee
+}*/
+
+/*relationship ManyToOne {
+	Employee{manager} to Employee
+}
+*/
+// defining multiple oneToOne relationships
+/*relationship OneToOne {
+	JobHistory{job} to Job,
+	JobHistory{department} to Department,
+	JobHistory{employee} to Employee
+}
+*/
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

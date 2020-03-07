@@ -1,0 +1,54 @@
+{
+    "name": "Appointment",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emittedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "allDay",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "editable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "backgroundColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "textColor",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200302182700",
+    "entityTableName": "appointment",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "dbFlowServer",
+    "applications": "*",
+    "microserviceName": "dbFlowServer",
+    "angularJSSuffix": "mySuffix"
+}
