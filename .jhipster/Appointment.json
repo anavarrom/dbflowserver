@@ -50,5 +50,6 @@
     "clientRootFolder": "dbFlowServer",
     "applications": "*",
     "microserviceName": "dbFlowServer",
-    "angularJSSuffix": "mySuffix"
+    "angularJSSuffix": "mySuffix",
+    "embedded": false
 }

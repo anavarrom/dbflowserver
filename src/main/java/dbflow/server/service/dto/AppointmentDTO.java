@@ -8,7 +8,7 @@ import java.util.Objects;
  * A DTO for the {@link dbflow.server.domain.Appointment} entity.
  */
 public class AppointmentDTO implements Serializable {
-
+    
     private Long id;
 
     private String title;
@@ -29,7 +29,7 @@ public class AppointmentDTO implements Serializable {
 
     private String textColor;
 
-
+    
     public Long getId() {
         return id;
     }
