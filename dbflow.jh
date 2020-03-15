@@ -1,3 +1,18 @@
+enum NotificationStatus {
+    EMITTED, RECEIVED, READ
+}
+
+entity Notification {
+    subject String,
+    body String,
+    from String,
+    to String,
+    emittedDate LocalDate,
+    readDate LocalDate,
+    dueDate LocalDate,
+    status NotificationStatus
+}
+
 entity Appointment {
 	title String,
 	description String,
@@ -10,7 +25,7 @@ entity Appointment {
 	textColor String,
 }
 // Set pagination options
-paginate Appointment with infinite-scroll
+paginate Appointment, Notification  with infinite-scroll
 //paginate Job with pagination
 
 // Use Data Transfert Objects (DTO)
