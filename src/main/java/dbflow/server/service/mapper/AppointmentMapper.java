@@ -13,6 +13,8 @@ import org.mapstruct.*;
 public interface AppointmentMapper extends EntityMapper<AppointmentDTO, Appointment> {
 
 
+    @Mapping(target = "notification", ignore = true)
+    Appointment toEntity(AppointmentDTO appointmentDTO);
 
     default Appointment fromId(Long id) {
         if (id == null) {

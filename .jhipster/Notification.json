@@ -35,7 +35,16 @@
             "fieldValues": "EMITTED,RECEIVED,READ"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "notification",
+            "relationshipName": "appointment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
     "changelogDate": "20200315164200",
     "entityTableName": "notification",
     "dto": "mapstruct",

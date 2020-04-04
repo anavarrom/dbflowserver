@@ -28,6 +28,8 @@ public class NotificationDTO implements Serializable {
 
     private NotificationStatus status;
 
+
+    private Long appointmentId;
     
     public Long getId() {
         return id;
@@ -101,6 +103,14 @@ public class NotificationDTO implements Serializable {
         this.status = status;
     }
 
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -134,6 +144,7 @@ public class NotificationDTO implements Serializable {
             ", readDate='" + getReadDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", appointmentId=" + getAppointmentId() +
             "}";
     }
 }

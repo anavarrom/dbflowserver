@@ -51,6 +51,10 @@ public class Notification implements Serializable {
     @Column(name = "status")
     private NotificationStatus status;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Appointment appointment;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -162,6 +166,19 @@ public class Notification implements Serializable {
 
     public void setStatus(NotificationStatus status) {
         this.status = status;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public Notification appointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

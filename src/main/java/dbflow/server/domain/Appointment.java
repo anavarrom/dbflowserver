@@ -1,5 +1,6 @@
 package dbflow.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,6 +51,10 @@ public class Appointment implements Serializable {
 
     @Column(name = "text_color")
     private String textColor;
+
+    @OneToOne(mappedBy = "appointment")
+    @JsonIgnore
+    private Notification notification;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -175,6 +180,19 @@ public class Appointment implements Serializable {
 
     public void setTextColor(String textColor) {
         this.textColor = textColor;
+    }
+
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public Appointment notification(Notification notification) {
+        this.notification = notification;
+        return this;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
