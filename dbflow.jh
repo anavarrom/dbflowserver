@@ -24,6 +24,9 @@ entity Appointment {
 	backgroundColor String,
 	textColor String,
 }
+relationship OneToOne {
+	Notification to Appointment
+}
 // Set pagination options
 paginate Appointment, Notification  with infinite-scroll
 //paginate Job with pagination

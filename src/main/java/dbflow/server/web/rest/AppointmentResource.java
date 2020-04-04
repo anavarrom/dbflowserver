@@ -22,6 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link dbflow.server.domain.Appointment}.
@@ -87,10 +88,16 @@ public class AppointmentResource {
      * {@code GET  /appointments} : get all the appointments.
      *
      * @param pageable the pagination information.
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of appointments in body.
      */
     @GetMapping("/appointments")
-    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(Pageable pageable) {
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(Pageable pageable, @RequestParam(required = false) String filter) {
+        if ("notification-is-null".equals(filter)) {
+            log.debug("REST request to get all Appointments where notification is null");
+            return new ResponseEntity<>(appointmentService.findAllWhereNotificationIsNull(),
+                    HttpStatus.OK);
+        }
         log.debug("REST request to get a page of Appointments");
         Page<AppointmentDTO> page = appointmentService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
