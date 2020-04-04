@@ -28,7 +28,7 @@ public class DbFlowServerApp implements InitializingBean {
 
     private static final Logger log = LoggerFactory.getLogger(DbFlowServerApp.class);
 
-    private final Environment env;
+    private final Environment env; 
 
     public DbFlowServerApp(Environment env) {
         this.env = env;

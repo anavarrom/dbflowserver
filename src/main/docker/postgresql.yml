@@ -6,6 +6,6 @@ services:
     #     - ~/volumes/jhipster/dbFlowServer/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=dbFlowServer
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=dbFlowServer
     ports:
-      - 5432:5432
+      - 5442:5432

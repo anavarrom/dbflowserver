@@ -177,7 +177,7 @@ public class NotificationResourceIT {
         // Get all the notificationList
         restNotificationMockMvc.perform(get("/api/notifications?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(notification.getId().intValue())))
             .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT)))
             .andExpect(jsonPath("$.[*].body").value(hasItem(DEFAULT_BODY)))
@@ -198,7 +198,7 @@ public class NotificationResourceIT {
         // Get the notification
         restNotificationMockMvc.perform(get("/api/notifications/{id}", notification.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(notification.getId().intValue()))
             .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT))
             .andExpect(jsonPath("$.body").value(DEFAULT_BODY))

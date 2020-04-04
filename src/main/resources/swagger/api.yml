@@ -9,7 +9,19 @@ servers:
     description: Development server
   - url: https://localhost:8091/api
     description: Development server with TLS Profile
-paths: {}
+paths: 
+ /api/appointments:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+
 components:
   responses:
     Problem:

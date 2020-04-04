@@ -2,6 +2,8 @@ package dbflow.server.service.mapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppointmentMapperTest {
@@ -10,7 +12,8 @@ public class AppointmentMapperTest {
 
     @BeforeEach
     public void setUp() {
-        appointmentMapper = new AppointmentMapperImpl();
+       // appointmentMapper = new AppointmentMapperImpl();
+    	appointmentMapper  = Mappers.getMapper( AppointmentMapper.class );
     }
 
     @Test
