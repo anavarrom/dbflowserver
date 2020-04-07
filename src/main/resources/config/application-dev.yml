@@ -55,8 +55,11 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/dbFlowServer
-    username: dbFlowServer
-    password:
+    username: postgres
+    password: postgres
+    # url: jdbc:postgresql://dbflowserver-postgresql:5442/dbFlowServer
+    # username: dbFlowServer
+    # password: dbFlowServer
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -109,12 +112,12 @@ jhipster:
   # CORS is disabled by default on microservices, as you should access them through a gateway.
   # If you want to enable it, please uncomment the configuration below.
   # cors:
-  #     allowed-origins: "*"
-  #     allowed-methods: "*"
-  #     allowed-headers: "*"
-  #     exposed-headers: "Authorization,Link,X-Total-Count"
-  #     allow-credentials: true
-  #     max-age: 1800
+       # allowed-origins: "*"
+       # allowed-methods: "*"
+       # allowed-headers: "*"
+       # exposed-headers: "Authorization,Link,X-Total-Count"
+       # allow-credentials: true
+       # max-age: 1800
   mail: # specific JHipster mail property, for standard properties see MailProperties
     base-url: http://127.0.0.1:8091
   metrics:

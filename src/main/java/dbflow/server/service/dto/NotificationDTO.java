@@ -34,7 +34,6 @@ public class NotificationDTO implements Serializable {
 
     private Long chatId;
 
-
     private Long appointmentId;
     
     public Long getId() {

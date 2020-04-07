@@ -60,6 +60,7 @@ public class Notification implements Serializable {
     @Column(name = "chat_id")
     private Long chatId;
 
+
     @OneToOne
     @JoinColumn(unique = true)
     private Appointment appointment;
@@ -176,6 +177,7 @@ public class Notification implements Serializable {
     public void setStatus(NotificationStatus status) {
         this.status = status;
     }
+
 
     public Long getFromId() {
         return fromId;

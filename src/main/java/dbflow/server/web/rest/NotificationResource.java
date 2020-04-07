@@ -1,5 +1,6 @@
 package dbflow.server.web.rest;
 
+import dbflow.server.security.SecurityUtils;
 import dbflow.server.service.NotificationService;
 import dbflow.server.web.rest.errors.BadRequestAlertException;
 import dbflow.server.service.dto.NotificationDTO;
@@ -91,7 +92,13 @@ public class NotificationResource {
      */
     @GetMapping("/notifications")
     public ResponseEntity<List<NotificationDTO>> getAllNotifications(Pageable pageable) {
-        log.debug("REST request to get a page of Notifications");
+        boolean isConnected = SecurityUtils.isAuthenticated();
+        
+        if (isConnected) {
+        	Optional<String> username = SecurityUtils.getCurrentUserLogin();
+        	
+        }
+    	log.debug("REST request to get a page of Notifications");
         Page<NotificationDTO> page = notificationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
