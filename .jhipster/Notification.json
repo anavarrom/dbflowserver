@@ -33,6 +33,18 @@
             "fieldName": "status",
             "fieldType": "NotificationStatus",
             "fieldValues": "EMITTED,RECEIVED,READ"
+        },
+        {
+            "fieldName": "fromId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "toId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "chatId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [

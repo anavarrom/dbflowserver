@@ -62,6 +62,15 @@ public class NotificationResourceIT {
     private static final NotificationStatus DEFAULT_STATUS = NotificationStatus.EMITTED;
     private static final NotificationStatus UPDATED_STATUS = NotificationStatus.RECEIVED;
 
+    private static final Long DEFAULT_FROM_ID = 1L;
+    private static final Long UPDATED_FROM_ID = 2L;
+
+    private static final Long DEFAULT_TO_ID = 1L;
+    private static final Long UPDATED_TO_ID = 2L;
+
+    private static final Long DEFAULT_CHAT_ID = 1L;
+    private static final Long UPDATED_CHAT_ID = 2L;
+
     @Autowired
     private NotificationRepository notificationRepository;
 
@@ -94,7 +103,10 @@ public class NotificationResourceIT {
             .emittedDate(DEFAULT_EMITTED_DATE)
             .readDate(DEFAULT_READ_DATE)
             .dueDate(DEFAULT_DUE_DATE)
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .fromId(DEFAULT_FROM_ID)
+            .toId(DEFAULT_TO_ID)
+            .chatId(DEFAULT_CHAT_ID);
         return notification;
     }
     /**
@@ -112,7 +124,10 @@ public class NotificationResourceIT {
             .emittedDate(UPDATED_EMITTED_DATE)
             .readDate(UPDATED_READ_DATE)
             .dueDate(UPDATED_DUE_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .fromId(UPDATED_FROM_ID)
+            .toId(UPDATED_TO_ID)
+            .chatId(UPDATED_CHAT_ID);
         return notification;
     }
 
@@ -145,6 +160,9 @@ public class NotificationResourceIT {
         assertThat(testNotification.getReadDate()).isEqualTo(DEFAULT_READ_DATE);
         assertThat(testNotification.getDueDate()).isEqualTo(DEFAULT_DUE_DATE);
         assertThat(testNotification.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testNotification.getFromId()).isEqualTo(DEFAULT_FROM_ID);
+        assertThat(testNotification.getToId()).isEqualTo(DEFAULT_TO_ID);
+        assertThat(testNotification.getChatId()).isEqualTo(DEFAULT_CHAT_ID);
     }
 
     @Test
@@ -186,7 +204,10 @@ public class NotificationResourceIT {
             .andExpect(jsonPath("$.[*].emittedDate").value(hasItem(DEFAULT_EMITTED_DATE.toString())))
             .andExpect(jsonPath("$.[*].readDate").value(hasItem(DEFAULT_READ_DATE.toString())))
             .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].fromId").value(hasItem(DEFAULT_FROM_ID.intValue())))
+            .andExpect(jsonPath("$.[*].toId").value(hasItem(DEFAULT_TO_ID.intValue())))
+            .andExpect(jsonPath("$.[*].chatId").value(hasItem(DEFAULT_CHAT_ID.intValue())));
     }
     
     @Test
@@ -207,7 +228,10 @@ public class NotificationResourceIT {
             .andExpect(jsonPath("$.emittedDate").value(DEFAULT_EMITTED_DATE.toString()))
             .andExpect(jsonPath("$.readDate").value(DEFAULT_READ_DATE.toString()))
             .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.fromId").value(DEFAULT_FROM_ID.intValue()))
+            .andExpect(jsonPath("$.toId").value(DEFAULT_TO_ID.intValue()))
+            .andExpect(jsonPath("$.chatId").value(DEFAULT_CHAT_ID.intValue()));
     }
 
     @Test
@@ -238,7 +262,10 @@ public class NotificationResourceIT {
             .emittedDate(UPDATED_EMITTED_DATE)
             .readDate(UPDATED_READ_DATE)
             .dueDate(UPDATED_DUE_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .fromId(UPDATED_FROM_ID)
+            .toId(UPDATED_TO_ID)
+            .chatId(UPDATED_CHAT_ID);
         NotificationDTO notificationDTO = notificationMapper.toDto(updatedNotification);
 
         restNotificationMockMvc.perform(put("/api/notifications").with(csrf())
@@ -258,6 +285,9 @@ public class NotificationResourceIT {
         assertThat(testNotification.getReadDate()).isEqualTo(UPDATED_READ_DATE);
         assertThat(testNotification.getDueDate()).isEqualTo(UPDATED_DUE_DATE);
         assertThat(testNotification.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testNotification.getFromId()).isEqualTo(UPDATED_FROM_ID);
+        assertThat(testNotification.getToId()).isEqualTo(UPDATED_TO_ID);
+        assertThat(testNotification.getChatId()).isEqualTo(UPDATED_CHAT_ID);
     }
 
     @Test

@@ -51,6 +51,16 @@ public class Notification implements Serializable {
     @Column(name = "status")
     private NotificationStatus status;
 
+    @Column(name = "from_id")
+    private Long fromId;
+
+    @Column(name = "to_id")
+    private Long toId;
+
+    @Column(name = "chat_id")
+    private Long chatId;
+
+
     @OneToOne
     @JoinColumn(unique = true)
     private Appointment appointment;
@@ -168,6 +178,46 @@ public class Notification implements Serializable {
         this.status = status;
     }
 
+
+    public Long getFromId() {
+        return fromId;
+    }
+
+    public Notification fromId(Long fromId) {
+        this.fromId = fromId;
+        return this;
+    }
+
+    public void setFromId(Long fromId) {
+        this.fromId = fromId;
+    }
+
+    public Long getToId() {
+        return toId;
+    }
+
+    public Notification toId(Long toId) {
+        this.toId = toId;
+        return this;
+    }
+
+    public void setToId(Long toId) {
+        this.toId = toId;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public Notification chatId(Long chatId) {
+        this.chatId = chatId;
+        return this;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
+
     public Appointment getAppointment() {
         return appointment;
     }
@@ -210,6 +260,9 @@ public class Notification implements Serializable {
             ", readDate='" + getReadDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", fromId=" + getFromId() +
+            ", toId=" + getToId() +
+            ", chatId=" + getChatId() +
             "}";
     }
 }

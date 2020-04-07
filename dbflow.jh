@@ -10,7 +10,10 @@ entity Notification {
     emittedDate LocalDate,
     readDate LocalDate,
     dueDate LocalDate,
-    status NotificationStatus
+    status NotificationStatus,
+	fromId Long,
+    toId Long,
+	chatId Long
 }
 
 entity Appointment {
