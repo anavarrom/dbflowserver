@@ -51,6 +51,19 @@ public class Notification implements Serializable {
     @Column(name = "status")
     private NotificationStatus status;
 
+    @Column(name = "from_id")
+    private Long fromId;
+
+    @Column(name = "to_id")
+    private Long toId;
+
+    @Column(name = "chat_id")
+    private Long chatId;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Appointment appointment;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -163,6 +176,58 @@ public class Notification implements Serializable {
     public void setStatus(NotificationStatus status) {
         this.status = status;
     }
+
+    public Long getFromId() {
+        return fromId;
+    }
+
+    public Notification fromId(Long fromId) {
+        this.fromId = fromId;
+        return this;
+    }
+
+    public void setFromId(Long fromId) {
+        this.fromId = fromId;
+    }
+
+    public Long getToId() {
+        return toId;
+    }
+
+    public Notification toId(Long toId) {
+        this.toId = toId;
+        return this;
+    }
+
+    public void setToId(Long toId) {
+        this.toId = toId;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public Notification chatId(Long chatId) {
+        this.chatId = chatId;
+        return this;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public Notification appointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -193,6 +258,9 @@ public class Notification implements Serializable {
             ", readDate='" + getReadDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", fromId=" + getFromId() +
+            ", toId=" + getToId() +
+            ", chatId=" + getChatId() +
             "}";
     }
 }

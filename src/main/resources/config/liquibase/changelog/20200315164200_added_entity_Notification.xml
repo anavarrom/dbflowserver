@@ -39,6 +39,18 @@
             <column name="status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="from_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="to_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="chat_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="appointment_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_notification_appointment_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -70,6 +82,9 @@
             <column name="read_date" type="date"/>
             <column name="due_date" type="date"/>
             <column name="status" type="string"/>
+            <column name="from_id" type="numeric"/>
+            <column name="to_id" type="numeric"/>
+            <column name="chat_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
