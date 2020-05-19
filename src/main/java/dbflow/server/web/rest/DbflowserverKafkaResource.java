@@ -21,16 +21,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @RestController
-@RequestMapping("/api/db-flow-server-kafka")
-public class DbFlowServerKafkaResource {
+@RequestMapping("/api/dbflowserver-kafka")
+public class DbflowserverKafkaResource {
 
-    private final Logger log = LoggerFactory.getLogger(DbFlowServerKafkaResource.class);
+    private final Logger log = LoggerFactory.getLogger(DbflowserverKafkaResource.class);
 
     private final KafkaProperties kafkaProperties;
     private KafkaProducer<String, String> producer;
     private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
 
-    public DbFlowServerKafkaResource(KafkaProperties kafkaProperties) {
+    public DbflowserverKafkaResource(KafkaProperties kafkaProperties) {
         this.kafkaProperties = kafkaProperties;
         this.producer = new KafkaProducer<>(kafkaProperties.getProducerProps());
     }

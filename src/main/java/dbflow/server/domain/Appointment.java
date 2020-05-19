@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * A Appointment.
@@ -25,8 +26,14 @@ public class Appointment implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "from")
+    private String from;
+
+    @Column(name = "to")
+    private String to;
+
+	@Column(name = "text")
+    private String text;
 
     @Column(name = "description")
     private String description;
@@ -34,11 +41,11 @@ public class Appointment implements Serializable {
     @Column(name = "emitted_date")
     private LocalDate emittedDate;
 
-    @Column(name = "start")
-    private LocalDate start;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
 
-    @Column(name = "jhi_end")
-    private LocalDate end;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
     @Column(name = "all_day")
     private Boolean allDay;
@@ -65,17 +72,17 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
     public Appointment title(String title) {
-        this.title = title;
+        this.text = title;
         return this;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getDescription() {
@@ -104,30 +111,30 @@ public class Appointment implements Serializable {
         this.emittedDate = emittedDate;
     }
 
-    public LocalDate getStart() {
-        return start;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public Appointment start(LocalDate start) {
-        this.start = start;
+    public Appointment start(LocalDateTime start) {
+        this.startDate = start;
         return this;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDateTime start) {
+        this.startDate = start;
     }
 
-    public LocalDate getEnd() {
-        return end;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public Appointment end(LocalDate end) {
-        this.end = end;
+    public Appointment end(LocalDateTime end) {
+        this.endDate = end;
         return this;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = end;
     }
 
     public Boolean isAllDay() {
@@ -194,6 +201,23 @@ public class Appointment implements Serializable {
     public void setNotification(Notification notification) {
         this.notification = notification;
     }
+
+    public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -216,11 +240,13 @@ public class Appointment implements Serializable {
     public String toString() {
         return "Appointment{" +
             "id=" + getId() +
-            ", title='" + getTitle() + "'" +
+            ", from='" + getFrom() + "'" +
+            ", to='" + getTo() + "'" +
+            ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
             ", emittedDate='" + getEmittedDate() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
             ", allDay='" + isAllDay() + "'" +
             ", editable='" + isEditable() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +

@@ -19,6 +19,11 @@ logging:
     io.github.jhipster: DEBUG
     dbflow.server: DEBUG
 
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
 spring:
   profiles:
     active: dev
@@ -35,17 +40,6 @@ spring:
   jackson:
     serialization:
       indent-output: true
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      group-id: group_id
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
   cloud:
     consul:
       discovery:
@@ -57,15 +51,15 @@ spring:
     url: jdbc:postgresql://localhost:5432/dbFlowServer
     username: postgres
     password: postgres
-    # url: jdbc:postgresql://dbflowserver-postgresql:5442/dbFlowServer
-    # username: dbFlowServer
-    # password: dbFlowServer
+    # type: com.zaxxer.hikari.HikariDataSource
+    # url: jdbc:postgresql://localhost:5432/dbflowserver
+    # username: dbflowserver
+    # password:
     hikari:
       poolName: Hikari
       auto-commit: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
-    database: POSTGRESQL
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
     show-sql: true
     properties:
       hibernate.id.new_generator_mappings: true
@@ -73,6 +67,15 @@ spring:
       hibernate.cache.use_second_level_cache: true
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
+      hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+      hibernate.cache.hazelcast.instance_name: dbflowserver
+      hibernate.cache.use_minimal_puts: true
+      hibernate.cache.hazelcast.use_lite_member: true
+  data:
+    elasticsearch:
+      properties:
+        path:
+          home: target/elasticsearch
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -94,9 +97,19 @@ spring:
     locator:
       discovery:
         enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            issuer-uri: http://localhost:9080/auth/realms/jhipster
+        registration:
+          oidc:
+            client-id: dbFlow
+            client-secret: 12fdc4d9-997f-43e2-aa28-ce4df1dc1448
 
 server:
-  port: 8091
+  port: 8081
 
 # ===================================================================
 # JHipster specific properties
@@ -106,20 +119,24 @@ server:
 
 jhipster:
   cache: # Cache configuration
-    ehcache: # Ehcache configuration
-      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
-      max-entries: 100 # Number of objects in each cache entry
+    hazelcast: # Hazelcast distributed cache
+      time-to-live-seconds: 3600
+      backup-count: 1
+      management-center: # Full reference is available at: http://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
+        enabled: false
+        update-interval: 3
+        url: http://localhost:8180/hazelcast-mancenter
   # CORS is disabled by default on microservices, as you should access them through a gateway.
   # If you want to enable it, please uncomment the configuration below.
   # cors:
-       # allowed-origins: "*"
-       # allowed-methods: "*"
-       # allowed-headers: "*"
-       # exposed-headers: "Authorization,Link,X-Total-Count"
-       # allow-credentials: true
-       # max-age: 1800
+  #     allowed-origins: "*"
+  #     allowed-methods: "*"
+  #     allowed-headers: "*"
+  #     exposed-headers: "Authorization,Link,X-Total-Count"
+  #     allow-credentials: true
+  #     max-age: 1800
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://127.0.0.1:8091
+    base-url: http://127.0.0.1:8081
   metrics:
     logs: # Reports metrics in the logs
       enabled: false

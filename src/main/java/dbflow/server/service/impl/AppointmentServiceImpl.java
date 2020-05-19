@@ -104,4 +104,10 @@ public class AppointmentServiceImpl implements AppointmentService {
         log.debug("Request to delete Appointment : {}", id);
         appointmentRepository.deleteById(id);
     }
+
+	@Override
+	public Page<AppointmentDTO> findAllUserAppointments(String username, Pageable pageable) {
+		// TODO Auto-generated method stub
+        return appointmentRepository.findByFromOrTo(username, username, pageable).map(appointmentMapper::toDto);
+	}
 }

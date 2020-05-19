@@ -3,7 +3,7 @@ package dbflow.server.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Properties specific to Db Flow Server.
+ * Properties specific to Dbflowserver.
  * <p>
  * Properties are configured in the {@code application.yml} file.
  * See {@link io.github.jhipster.config.JHipsterProperties} for a good example.

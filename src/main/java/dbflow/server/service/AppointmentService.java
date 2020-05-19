@@ -28,6 +28,15 @@ public interface AppointmentService {
      * @return the list of entities.
      */
     Page<AppointmentDTO> findAll(Pageable pageable);
+    
+    /**
+     * Get all the appointments.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<AppointmentDTO> findAllUserAppointments(String username, Pageable pageable);
+
     /**
      * Get all the AppointmentDTO where Notification is {@code null}.
      *
