@@ -1,5 +1,6 @@
 package dbflow.server.web.rest;
 
+
 import dbflow.server.service.SafeKeepingPeriodService;
 import dbflow.server.web.rest.errors.BadRequestAlertException;
 import dbflow.server.service.dto.SafeKeepingPeriodDTO;
@@ -10,6 +11,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -28,6 +30,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class SafeKeepingPeriodResource {
 
     private final Logger log = LoggerFactory.getLogger(SafeKeepingPeriodResource.class);

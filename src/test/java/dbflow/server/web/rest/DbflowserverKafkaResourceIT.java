@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class DbFlowServerKafkaResourceIT {
+class DbflowserverKafkaResourceIT {
 
     private static boolean started = false;
     private static KafkaContainer kafkaContainer;
@@ -42,7 +42,7 @@ class DbFlowServerKafkaResourceIT {
     }
 
     private static void startTestcontainer() {
-        kafkaContainer = new KafkaContainer("5.3.1");
+        kafkaContainer = new KafkaContainer("5.4.0");
         kafkaContainer.start();
     }
 
@@ -56,16 +56,16 @@ class DbFlowServerKafkaResourceIT {
         consumerProps.put("client.id", "default-client");
         kafkaProperties.setConsumer(consumerProps);
 
-        DbFlowServerKafkaResource kafkaResource = new DbFlowServerKafkaResource(kafkaProperties);
+        DbflowserverKafkaResource kafkaResource = new DbflowserverKafkaResource(kafkaProperties);
 
         restMockMvc = MockMvcBuilders.standaloneSetup(kafkaResource).build();
     }
 
     @Test
     void producesMessages() throws Exception {
-        restMockMvc.perform(post("/api/db-flow-server-kafka/publish/topic-produce?message=value-produce"))
+        restMockMvc.perform(post("/api/dbflowserver-kafka/publish/topic-produce?message=value-produce"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
         Map<String, Object> consumerProps = new HashMap<>(getConsumerProps("group-produce"));
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps);
@@ -84,9 +84,8 @@ class DbFlowServerKafkaResourceIT {
 
         producer.send(new ProducerRecord<>("topic-consume", "value-consume"));
 
-        MvcResult mvcResult = restMockMvc.perform(get("/api/db-flow-server-kafka/consume?topic=topic-consume"))
+        MvcResult mvcResult = restMockMvc.perform(get("/api/dbflowserver-kafka/consume?topic=topic-consume"))
             .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_EVENT_STREAM))
             .andExpect(request().asyncStarted())
             .andReturn();
 

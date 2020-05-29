@@ -1,11 +1,11 @@
-id;title;description;emitted_date;start;jhi_end;all_day;editable;background_color;text_color
-1;mobile Games tangible;transition;2020-03-02;2020-03-01;2020-03-02;true;true;Investment Account;Buckinghamshire Principal
-2;Buckinghamshire;Chicken invoice Chief;2020-03-01;2020-03-01;2020-03-01;false;true;Russian Federation National;Producer infrastructure transmitting
-3;Indiana;Dobra;2020-03-02;2020-03-02;2020-03-02;false;false;Berkshire;Rustic
-4;Quality-focused;Lead;2020-03-02;2020-03-02;2020-03-02;true;true;e-business hack Wooden;Buckinghamshire copying
-5;Kansas;Avon invoice payment;2020-03-02;2020-03-02;2020-03-02;true;true;Fiji;Soap
-6;South Dakota compelling;transmit archive Senior;2020-03-02;2020-03-02;2020-03-02;true;false;matrices Kentucky North Dakota;Poland
-7;Division;Producer Maryland blue;2020-03-01;2020-03-01;2020-03-01;true;true;web-readiness architectures;Movies Tasty
-8;complexity Lek;Assimilated Bedfordshire;2020-03-02;2020-03-02;2020-03-02;false;true;generate Shoes Chief;Consultant Algerian Dinar
-9;Pitcairn Islands local;Investor Harbors;2020-03-02;2020-03-02;2020-03-02;false;false;Metal Bermuda magenta;Intelligent
-10;monetize;overriding;2020-03-02;2020-03-01;2020-03-02;true;true;JBOD Handcrafted Developer;XML
+id;from;to;text;description;emitted_date;start_date;end_date;all_day;editable;background_color;text_color
+1;user1;user2;Recoger al perro;Hay que recoger al perro que está en el veterinario;2020-04-02;2020-05-22 11:00:00;2020-05-22 11:30:00;false;true;0;0
+2;user1;user2;Ir a revisar el coche;Tenemos que revisar el coche al taller;2020-03-01;2020-06-04 17:00:00;2020-06-04 18:00:00;false;true;Russian Federation National;0
+3;user1;user2;Ver El Hormiguero;Tenemos que ver El Hormiguero que me gusta mucho;2020-03-02;2020-05-28 22:00:00;2020-05-28 23:00:00;false;false;Berkshire;Rustic
+4;user2;user1;San Isidro;Es fiesta porque es San Isidro;2020-03-02;2020-05-15;2020-05-15;true;true;e-business hack Wooden;Buckinghamshire copying
+5;user2;user1;Inicio de teletrabajo;Se comienza el teletrabajo;2020-03-02;2020-06-12;2020-06-12;true;true;Fiji;Soap
+6;user21;user1;South Dakota compelling;transmit archive Senior;2020-03-02;2020-03-02;2020-03-02;true;false;matrices Kentucky North Dakota;Poland
+7;user2;user12;Division;Producer Maryland blue;2020-03-01;2020-03-01;2020-03-01;true;true;web-readiness architectures;Movies Tasty
+8;user2;user14;complexity Lek;Assimilated Bedfordshire;2020-03-02;2020-03-02;2020-03-02;false;true;generate Shoes Chief;Consultant Algerian Dinar
+9;user21;user1;Pitcairn Islands local;Investor Harbors;2020-03-02;2020-03-02;2020-03-02;false;false;Metal Bermuda magenta;Intelligent
+10;user11;user2;monetize;overriding;2020-03-02;2020-03-01;2020-03-02;true;true;JBOD Handcrafted Developer;XML

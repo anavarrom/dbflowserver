@@ -1,6 +1,8 @@
 package dbflow.server.web.rest;
 
 import dbflow.server.config.Constants;
+import dbflow.server.domain.User;
+import dbflow.server.repository.search.UserSearchRepository;
 import dbflow.server.security.AuthoritiesConstants;
 import dbflow.server.service.UserService;
 import dbflow.server.service.dto.UserDTO;
@@ -22,11 +24,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing users.
  * <p>
- * This class accesses the {@link dbflow.server.domain.User} entity, and needs to fetch its collection of authorities.
+ * This class accesses the {@link User} entity, and needs to fetch its collection of authorities.
  * <p>
  * For a normal use-case, it would be better to have an eager relationship between User and Authority,
  * and send everything to the client side: there would be no View Model and DTO, a lot less code, and an outer-join
@@ -58,9 +64,11 @@ public class UserResource {
 
     private final UserService userService;
 
-    public UserResource(UserService userService) {
+    private final UserSearchRepository userSearchRepository;
 
+    public UserResource(UserService userService, UserSearchRepository userSearchRepository) {
         this.userService = userService;
+        this.userSearchRepository = userSearchRepository;
     }
 
     /**
@@ -81,7 +89,7 @@ public class UserResource {
      * @return a string list of all roles.
      */
     @GetMapping("/users/authorities")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public List<String> getAuthorities() {
         return userService.getAuthorities();
     }
@@ -98,5 +106,18 @@ public class UserResource {
         return ResponseUtil.wrapOrNotFound(
             userService.getUserWithAuthoritiesByLogin(login)
                 .map(UserDTO::new));
+    }
+
+    /**
+     * {@code SEARCH /_search/users/:query} : search for the User corresponding to the query.
+     *
+     * @param query the query to search.
+     * @return the result of the search.
+     */
+    @GetMapping("/_search/users/{query}")
+    public List<User> search(@PathVariable String query) {
+        return StreamSupport
+            .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .collect(Collectors.toList());
     }
 }

@@ -33,9 +33,30 @@
             "fieldName": "status",
             "fieldType": "NotificationStatus",
             "fieldValues": "EMITTED,RECEIVED,READ"
+        },
+        {
+            "fieldName": "fromId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "toId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "chatId",
+            "fieldType": "Long"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "notification",
+            "relationshipName": "appointment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
     "changelogDate": "20200315164200",
     "entityTableName": "notification",
     "dto": "mapstruct",

@@ -7,7 +7,6 @@ entity SafeKeepingPeriod {
 	backgroundColor String,
 	textColor String
 }
-
 paginate SafeKeepingPeriod  with infinite-scroll
 //paginate Job with pagination
 
