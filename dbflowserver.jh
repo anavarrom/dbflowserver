@@ -1,0 +1,9 @@
+entity SafeKeepingPeriod {
+	owner String,
+	text String,
+	description String,
+	start ZonedDateTime,
+	end ZonedDateTime,
+	backgroundColor String,
+	textColor String
+}
