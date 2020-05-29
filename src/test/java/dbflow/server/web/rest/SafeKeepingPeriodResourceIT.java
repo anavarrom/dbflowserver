@@ -4,6 +4,9 @@ import dbflow.server.DbFlowServerApp;
 import dbflow.server.config.TestSecurityConfiguration;
 import dbflow.server.domain.SafeKeepingPeriod;
 import dbflow.server.repository.SafeKeepingPeriodRepository;
+import dbflow.server.service.SafeKeepingPeriodService;
+import dbflow.server.service.dto.SafeKeepingPeriodDTO;
+import dbflow.server.service.mapper.SafeKeepingPeriodMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,6 +64,12 @@ public class SafeKeepingPeriodResourceIT {
     private SafeKeepingPeriodRepository safeKeepingPeriodRepository;
 
     @Autowired
+    private SafeKeepingPeriodMapper safeKeepingPeriodMapper;
+
+    @Autowired
+    private SafeKeepingPeriodService safeKeepingPeriodService;
+
+    @Autowired
     private EntityManager em;
 
     @Autowired
@@ -113,9 +122,10 @@ public class SafeKeepingPeriodResourceIT {
     public void createSafeKeepingPeriod() throws Exception {
         int databaseSizeBeforeCreate = safeKeepingPeriodRepository.findAll().size();
         // Create the SafeKeepingPeriod
+        SafeKeepingPeriodDTO safeKeepingPeriodDTO = safeKeepingPeriodMapper.toDto(safeKeepingPeriod);
         restSafeKeepingPeriodMockMvc.perform(post("/api/safe-keeping-periods").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriod)))
+            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriodDTO)))
             .andExpect(status().isCreated());
 
         // Validate the SafeKeepingPeriod in the database
@@ -138,11 +148,12 @@ public class SafeKeepingPeriodResourceIT {
 
         // Create the SafeKeepingPeriod with an existing ID
         safeKeepingPeriod.setId(1L);
+        SafeKeepingPeriodDTO safeKeepingPeriodDTO = safeKeepingPeriodMapper.toDto(safeKeepingPeriod);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSafeKeepingPeriodMockMvc.perform(post("/api/safe-keeping-periods").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriod)))
+            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriodDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the SafeKeepingPeriod in the database
@@ -218,10 +229,11 @@ public class SafeKeepingPeriodResourceIT {
             .end(UPDATED_END)
             .backgroundColor(UPDATED_BACKGROUND_COLOR)
             .textColor(UPDATED_TEXT_COLOR);
+        SafeKeepingPeriodDTO safeKeepingPeriodDTO = safeKeepingPeriodMapper.toDto(updatedSafeKeepingPeriod);
 
         restSafeKeepingPeriodMockMvc.perform(put("/api/safe-keeping-periods").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedSafeKeepingPeriod)))
+            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriodDTO)))
             .andExpect(status().isOk());
 
         // Validate the SafeKeepingPeriod in the database
@@ -242,10 +254,13 @@ public class SafeKeepingPeriodResourceIT {
     public void updateNonExistingSafeKeepingPeriod() throws Exception {
         int databaseSizeBeforeUpdate = safeKeepingPeriodRepository.findAll().size();
 
+        // Create the SafeKeepingPeriod
+        SafeKeepingPeriodDTO safeKeepingPeriodDTO = safeKeepingPeriodMapper.toDto(safeKeepingPeriod);
+
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restSafeKeepingPeriodMockMvc.perform(put("/api/safe-keeping-periods").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriod)))
+            .content(TestUtil.convertObjectToJsonBytes(safeKeepingPeriodDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the SafeKeepingPeriod in the database
