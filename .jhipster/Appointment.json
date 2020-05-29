@@ -38,7 +38,15 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "notification",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "notification",
+            "ownerSide": false
+        }
+    ],
     "changelogDate": "20200302182700",
     "entityTableName": "appointment",
     "dto": "mapstruct",

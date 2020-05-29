@@ -1,5 +1,6 @@
 package dbflow.server.web.rest;
 
+import dbflow.server.security.SecurityUtils;
 import dbflow.server.service.AppointmentService;
 import dbflow.server.web.rest.errors.BadRequestAlertException;
 import dbflow.server.service.dto.AppointmentDTO;
@@ -22,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link dbflow.server.domain.Appointment}.
@@ -87,14 +89,42 @@ public class AppointmentResource {
      * {@code GET  /appointments} : get all the appointments.
      *
      * @param pageable the pagination information.
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of appointments in body.
      */
     @GetMapping("/appointments")
-    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(Pageable pageable) {
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(Pageable pageable, @RequestParam(required = false) String filter) {
+        if ("notification-is-null".equals(filter)) {
+            log.debug("REST request to get all Appointments where notification is null");
+            return new ResponseEntity<>(appointmentService.findAllWhereNotificationIsNull(),
+                    HttpStatus.OK);
+        }
         log.debug("REST request to get a page of Appointments");
         Page<AppointmentDTO> page = appointmentService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /chats} : get all the user appointments.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of appointments in body.
+     */
+    @GetMapping("/userappointments")
+    public ResponseEntity<List<AppointmentDTO>> getAllUserAppointments(Pageable pageable) { 
+       boolean isConnected = SecurityUtils.isAuthenticated();
+       if (!isConnected) {
+    	   log.debug("Not Connected ");
+    	   return null;
+       } 
+       Optional<String> username = SecurityUtils.getCurrentUserLogin();
+       log.debug("Connected " + username);              
+       String real_username = username.get();
+       
+       Page<AppointmentDTO> page = appointmentService.findAllUserAppointments(real_username, pageable);
+       HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+       return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

@@ -1,6 +1,6 @@
 package dbflow.server.config.timezone;
 
-import dbflow.server.DbFlowServerApp;
+import dbflow.server.DbflowserverApp;
 import dbflow.server.config.TestSecurityConfiguration;
 import dbflow.server.repository.timezone.DateTimeWrapper;
 import dbflow.server.repository.timezone.DateTimeWrapperRepository;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for the UTC Hibernate configuration.
  */
-@SpringBootTest(classes = {DbFlowServerApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {DbflowserverApp.class, TestSecurityConfiguration.class})
 public class HibernateTimeZoneIT {
 
     @Autowired
