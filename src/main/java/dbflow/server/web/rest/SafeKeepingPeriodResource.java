@@ -30,7 +30,6 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class SafeKeepingPeriodResource {
 
     private final Logger log = LoggerFactory.getLogger(SafeKeepingPeriodResource.class);

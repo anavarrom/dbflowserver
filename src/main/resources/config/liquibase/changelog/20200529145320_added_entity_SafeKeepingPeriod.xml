@@ -24,10 +24,10 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="start" type="datetime">
+            <column name="start_date" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="jhi_end" type="datetime">
+            <column name="end_date" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="background_color" type="varchar(255)">
@@ -38,8 +38,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="safe_keeping_period" columnName="start" columnDataType="datetime"/>
-        <dropDefaultValue tableName="safe_keeping_period" columnName="jhi_end" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20200529145320-1-relations" author="jhipster">
@@ -64,8 +62,8 @@
             <column name="owner" type="string"/>
             <column name="text" type="string"/>
             <column name="description" type="string"/>
-            <column name="start" type="datetime"/>
-            <column name="jhi_end" type="datetime"/>
+            <column name="start_date" type="datetime"/>
+            <column name="end_date" type="datetime"/>
             <column name="background_color" type="string"/>
             <column name="text_color" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

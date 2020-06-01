@@ -61,26 +61,6 @@ public class CacheConfiguration {
     }
 
     @Bean
-    public JCacheManagerCustomizer cacheManagerCustomizer() {
-        return cm -> {
-            createCache(cm, "oAuth2Authentication");
-            createCache(cm, dbflow.server.repository.UserRepository.USERS_BY_LOGIN_CACHE);
-            createCache(cm, dbflow.server.repository.UserRepository.USERS_BY_EMAIL_CACHE);
-            createCache(cm, dbflow.server.domain.User.class.getName());
-            createCache(cm, dbflow.server.domain.Authority.class.getName());
-            createCache(cm, dbflow.server.domain.User.class.getName() + ".authorities");
-            createCache(cm, dbflow.server.domain.Appointment.class.getName());
-            createCache(cm, dbflow.server.domain.Notification.class.getName());
-            createCache(cm, dbflow.server.domain.SafeKeepingPeriod.class.getName());
-            // jhipster-needle-ehcache-add-entry
-        };
-    }
-
-    private void createCache(javax.cache.CacheManager cm, String cacheName) {
-        javax.cache.Cache<Object, Object> cache = cm.getCache(cacheName);
-        if (cache != null) {
-            cm.destroyCache(cacheName);
-
     public HazelcastInstance hazelcastInstance(JHipsterProperties jHipsterProperties) {
         log.debug("Configuring Hazelcast");
         HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("dbflowserver");
@@ -120,7 +100,6 @@ public class CacheConfiguration {
                     config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
                 }
             }
-
         }
         config.getMapConfigs().put("default", initializeDefaultMapConfig(jHipsterProperties));
 

@@ -1,5 +1,6 @@
 package dbflow.server.service.dto;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 
@@ -16,16 +17,29 @@ public class SafeKeepingPeriodDTO implements Serializable {
 
     private String description;
 
-    private ZonedDateTime start;
+    private LocalDateTime startDate;
 
-    private ZonedDateTime end;
+    private LocalDateTime endDate;
 
     private String backgroundColor;
 
     private String textColor;
 
+    private Boolean allDay;
     
-    public Long getId() {
+    public SafeKeepingPeriodDTO() {
+    	this.allDay = false;
+    }
+    
+    public Boolean getAllDay() {
+		return allDay;
+	}
+
+	public void setAllDay(Boolean allDay) {
+		this.allDay = allDay;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -57,20 +71,20 @@ public class SafeKeepingPeriodDTO implements Serializable {
         this.description = description;
     }
 
-    public ZonedDateTime getStart() {
-        return start;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public void setStart(ZonedDateTime start) {
-        this.start = start;
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
     }
 
-    public ZonedDateTime getEnd() {
-        return end;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(ZonedDateTime end) {
-        this.end = end;
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     public String getBackgroundColor() {
@@ -114,8 +128,8 @@ public class SafeKeepingPeriodDTO implements Serializable {
             ", owner='" + getOwner() + "'" +
             ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
             "}";

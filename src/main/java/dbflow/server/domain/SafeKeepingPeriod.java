@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 /**
@@ -32,11 +33,11 @@ public class SafeKeepingPeriod implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "start")
-    private ZonedDateTime start;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
 
-    @Column(name = "jhi_end")
-    private ZonedDateTime end;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
     @Column(name = "background_color")
     private String backgroundColor;
@@ -92,30 +93,30 @@ public class SafeKeepingPeriod implements Serializable {
         this.description = description;
     }
 
-    public ZonedDateTime getStart() {
-        return start;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public SafeKeepingPeriod start(ZonedDateTime start) {
-        this.start = start;
+    public SafeKeepingPeriod startDate(LocalDateTime start) {
+        this.startDate = start;
         return this;
     }
 
-    public void setStart(ZonedDateTime start) {
-        this.start = start;
+    public void setStartDate(LocalDateTime start) {
+        this.startDate = start;
     }
 
-    public ZonedDateTime getEnd() {
-        return end;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public SafeKeepingPeriod end(ZonedDateTime end) {
-        this.end = end;
+    public SafeKeepingPeriod endDate(LocalDateTime end) {
+        this.endDate = end;
         return this;
     }
 
-    public void setEnd(ZonedDateTime end) {
-        this.end = end;
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = end;
     }
 
     public String getBackgroundColor() {
@@ -169,8 +170,8 @@ public class SafeKeepingPeriod implements Serializable {
             ", owner='" + getOwner() + "'" +
             ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
             "}";
