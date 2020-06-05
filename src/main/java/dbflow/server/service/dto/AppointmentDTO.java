@@ -1,6 +1,7 @@
 package dbflow.server.service.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,15 +12,19 @@ public class AppointmentDTO implements Serializable {
     
     private Long id;
 
-    private String title;
+    private String from;
+    
+	private String to;
+
+    private String text;
 
     private String description;
 
     private LocalDate emittedDate;
 
-    private LocalDate start;
+    private LocalDateTime startDate;
 
-    private LocalDate end;
+    private LocalDateTime endDate;
 
     private Boolean allDay;
 
@@ -38,12 +43,12 @@ public class AppointmentDTO implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setText(String title) {
+        this.text = title;
     }
 
     public String getDescription() {
@@ -62,20 +67,20 @@ public class AppointmentDTO implements Serializable {
         this.emittedDate = emittedDate;
     }
 
-    public LocalDate getStart() {
-        return start;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDateTime start) {
+        this.startDate = start;
     }
 
-    public LocalDate getEnd() {
-        return end;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = end;
     }
 
     public Boolean isAllDay() {
@@ -110,6 +115,23 @@ public class AppointmentDTO implements Serializable {
         this.textColor = textColor;
     }
 
+    public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -135,11 +157,13 @@ public class AppointmentDTO implements Serializable {
     public String toString() {
         return "AppointmentDTO{" +
             "id=" + getId() +
-            ", title='" + getTitle() + "'" +
+            ", from='" + getFrom() + "'" +
+            ", to='" + getTo() + "'" +
+            ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
             ", emittedDate='" + getEmittedDate() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
             ", allDay='" + isAllDay() + "'" +
             ", editable='" + isEditable() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +

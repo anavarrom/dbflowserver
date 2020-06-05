@@ -7,7 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * A SafeKeepingPeriod.
@@ -37,16 +37,18 @@ public class SafeKeepingPeriod implements Serializable {
     private String description;
 
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "end_date")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
+
 
     @Column(name = "background_color")
     private String backgroundColor;
 
     @Column(name = "text_color")
     private String textColor;
+
 
     @ManyToOne
     @JsonIgnoreProperties(value = "safeKeepingPeriods", allowSetters = true)
@@ -60,6 +62,7 @@ public class SafeKeepingPeriod implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getYear() {
         return year;
@@ -113,30 +116,31 @@ public class SafeKeepingPeriod implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public SafeKeepingPeriod startDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public SafeKeepingPeriod startDate(LocalDateTime start) {
+        this.startDate = start;
         return this;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setStartDate(LocalDateTime start) {
+        this.startDate = start;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public SafeKeepingPeriod endDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public SafeKeepingPeriod endDate(LocalDateTime end) {
+        this.endDate = end;
         return this;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = end;
+
     }
 
     public String getBackgroundColor() {
@@ -200,12 +204,12 @@ public class SafeKeepingPeriod implements Serializable {
     public String toString() {
         return "SafeKeepingPeriod{" +
             "id=" + getId() +
-            ", year='" + getYear() + "'" +
             ", owner='" + getOwner() + "'" +
             ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
+            ", year='" + getYear() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
             "}";

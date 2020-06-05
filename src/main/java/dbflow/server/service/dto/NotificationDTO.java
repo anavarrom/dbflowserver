@@ -28,6 +28,13 @@ public class NotificationDTO implements Serializable {
 
     private NotificationStatus status;
 
+    private Long fromId;
+
+    private Long toId;
+
+    private Long chatId;
+
+    private Long appointmentId;
     
     public Long getId() {
         return id;
@@ -101,6 +108,38 @@ public class NotificationDTO implements Serializable {
         this.status = status;
     }
 
+    public Long getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(Long fromId) {
+        this.fromId = fromId;
+    }
+
+    public Long getToId() {
+        return toId;
+    }
+
+    public void setToId(Long toId) {
+        this.toId = toId;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
+
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -134,6 +173,10 @@ public class NotificationDTO implements Serializable {
             ", readDate='" + getReadDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", fromId=" + getFromId() +
+            ", toId=" + getToId() +
+            ", chatId=" + getChatId() +
+            ", appointmentId=" + getAppointmentId() +
             "}";
     }
 }

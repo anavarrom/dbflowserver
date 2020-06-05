@@ -1,6 +1,8 @@
 package dbflow.server.service.dto;
 
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -11,21 +13,19 @@ public class SafeKeepingPeriodDTO implements Serializable {
     private Long id;
 
     private String year;
-
     private String owner;
 
     private String text;
 
     private String description;
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     private String backgroundColor;
 
     private String textColor;
-
 
     private Long safeKeepingProjectId;
     
@@ -43,6 +43,27 @@ public class SafeKeepingPeriodDTO implements Serializable {
 
     public void setYear(String year) {
         this.year = year;
+
+      private Boolean allDay;
+    
+    public SafeKeepingPeriodDTO() {
+    	this.allDay = false;
+    }
+    
+    public Boolean getAllDay() {
+		return allDay;
+	}
+
+	public void setAllDay(Boolean allDay) {
+		this.allDay = allDay;
+	}
+
+	public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getOwner() {
@@ -69,19 +90,19 @@ public class SafeKeepingPeriodDTO implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -131,12 +152,12 @@ public class SafeKeepingPeriodDTO implements Serializable {
     public String toString() {
         return "SafeKeepingPeriodDTO{" +
             "id=" + getId() +
-            ", year='" + getYear() + "'" +
             ", owner='" + getOwner() + "'" +
             ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
+            ", year='" + getYear() + "'" +
+            ", start='" + getStartDate() + "'" +
+            ", end='" + getEndDate() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
             ", safeKeepingProjectId=" + getSafeKeepingProjectId() +

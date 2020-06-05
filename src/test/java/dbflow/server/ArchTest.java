@@ -18,9 +18,9 @@ class ArchTest {
 
         noClasses()
             .that()
-                .resideInAnyPackage("..service..")
+                .resideInAnyPackage("dbflow.server.service..")
             .or()
-                .resideInAnyPackage("..repository..")
+                .resideInAnyPackage("dbflow.server.repository..")
             .should().dependOnClassesThat()
                 .resideInAnyPackage("..dbflow.server.web..")
         .because("Services and repositories should not depend on web layer")

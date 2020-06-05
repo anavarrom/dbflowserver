@@ -1,9 +1,10 @@
 package dbflow.server.service;
 
-import dbflow.server.DbFlowServerApp;
+import dbflow.server.DbflowserverApp;
 import dbflow.server.config.Constants;
 import dbflow.server.config.TestSecurityConfiguration;
 import dbflow.server.domain.User;
+import dbflow.server.repository.search.UserSearchRepository;
 import dbflow.server.repository.UserRepository;
 import dbflow.server.security.AuthoritiesConstants;
 import dbflow.server.service.dto.UserDTO;
@@ -21,18 +22,20 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 /**
  * Integration tests for {@link UserService}.
  */
-@SpringBootTest(classes = {DbFlowServerApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {DbflowserverApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class UserServiceIT {
 
@@ -53,6 +56,14 @@ public class UserServiceIT {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * This repository is mocked in the dbflow.server.repository.search test package.
+     *
+     * @see dbflow.server.repository.search.UserSearchRepositoryMockConfiguration
+     */
+    @Autowired
+    private UserSearchRepository mockUserSearchRepository;
 
     private User user;
 

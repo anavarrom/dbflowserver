@@ -43,7 +43,7 @@ management:
         include: ['configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump']
   endpoint:
     health:
-      show-details: when-authorized
+      show-details: when_authorized
       roles: 'ROLE_ADMIN'
     jhimetrics:
       enabled: true
@@ -74,13 +74,15 @@ management:
       application: ${spring.application.name}
     web:
       server:
-        auto-time-requests: true
+        request:
+          autotime:
+            enabled: true
 
 spring:
   autoconfigure:
-    exclude: org.springframework.boot.actuate.autoconfigure.metrics.jdbc.DataSourcePoolMetricsAutoConfiguration
+    exclude: org.springframework.boot.actuate.autoconfigure.metrics.jdbc.DataSourcePoolMetricsAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
   application:
-    name: dbFlowServer
+    name: dbflowserver
   cloud:
     consul:
       discovery:
@@ -100,6 +102,21 @@ spring:
     open-in-view: false
     properties:
       hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      # modify batch size as necessary
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+      hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+      hibernate.cache.use_minimal_puts: true
+      hibernate.cache.hazelcast.instance_name: dbflowserver
+      hibernate.cache.hazelcast.use_lite_member: true
     hibernate:
       ddl-auto: none
       naming:
@@ -114,13 +131,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: db-flow-server-task-
+      thread-name-prefix: dbflowserver-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: db-flow-server-scheduling-
+      thread-name-prefix: dbflowserver-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -136,8 +153,8 @@ spring:
             issuer-uri: http://localhost:9080/auth/realms/jhipster
         registration:
           oidc:
-            client-id: internal
-            client-secret: internal
+            client-id: dbFlow
+            client-secret: 12fdc4d9-997f-43e2-aa28-ce4df1dc1448
 
 server:
   servlet:
@@ -158,7 +175,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'dbFlowServerApp'
+    name: 'dbflowserverApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -168,11 +185,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: dbFlowServer@localhost
+    from: dbflowserver@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: dbFlowServer API
-    description: dbFlowServer API documentation
+    title: dbflowserver API
+    description: dbflowserver API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:
@@ -190,7 +207,7 @@ kafka:
   consumer:
     key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    group.id: db-flow-server
+    group.id: dbflowserver
     auto.offset.reset: earliest
   producer:
     key.serializer: org.apache.kafka.common.serialization.StringSerializer
