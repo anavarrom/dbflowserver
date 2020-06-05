@@ -1,17 +1,21 @@
 {
-  "name": "Appointment",
+  "name": "SafeKeepingPeriod",
   "fields": [
     {
-      "fieldName": "title",
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "owner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
       "fieldType": "String"
     },
     {
       "fieldName": "description",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "emittedDate",
-      "fieldType": "LocalDate"
     },
     {
       "fieldName": "start",
@@ -22,14 +26,6 @@
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "allDay",
-      "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "editable",
-      "fieldType": "Boolean"
-    },
-    {
       "fieldName": "backgroundColor",
       "fieldType": "String"
     },
@@ -38,18 +34,25 @@
       "fieldType": "String"
     }
   ],
-  "relationships": [],
-  "changelogDate": "20200302182700",
-  "entityTableName": "appointment",
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "safeKeepingProject",
+      "otherEntityRelationshipName": "safeKeepingPeriod",
+      "relationshipName": "safeKeepingProject",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200605082324",
+  "entityTableName": "safe_keeping_period",
   "dto": "mapstruct",
   "pagination": "infinite-scroll",
   "service": "serviceImpl",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
+  "embedded": false,
   "clientRootFolder": "dbFlowServer",
   "applications": "*",
-  "microserviceName": "dbFlowServer",
-  "angularJSSuffix": "mySuffix",
-  "embedded": false
+  "microserviceName": "dbFlowServer"
 }
