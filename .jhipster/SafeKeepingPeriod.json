@@ -2,6 +2,11 @@
   "name": "SafeKeepingPeriod",
   "fields": [
     {
+
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "owner",
       "fieldType": "String"
     },
@@ -14,12 +19,12 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "start",
-      "fieldType": "ZonedDateTime"
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
     },
     {
-      "fieldName": "end",
-      "fieldType": "ZonedDateTime"
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
     },
     {
       "fieldName": "backgroundColor",
@@ -30,8 +35,16 @@
       "fieldType": "String"
     }
   ],
-  "relationships": [],
-  "changelogDate": "20200529145320",
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "safeKeepingProject",
+      "otherEntityRelationshipName": "safeKeepingPeriod",
+      "relationshipName": "safeKeepingProject",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200605084313",
   "entityTableName": "safe_keeping_period",
   "dto": "mapstruct",
   "pagination": "infinite-scroll",

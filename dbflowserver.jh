@@ -1,13 +1,27 @@
+
+entity SafeKeepingProject {
+	name String,
+    description String,
+    parent1 String,
+	parent2 String,
+	mediator String,
+	start LocalDate
+}
+
 entity SafeKeepingPeriod {
-	owner String,
+	year String,
+    owner String,
 	text String,
 	description String,
-	start ZonedDateTime,
-	end ZonedDateTime,
+	startDate LocalDate,
+	endDate LocalDate,
 	backgroundColor String,
 	textColor String
 }
-paginate SafeKeepingPeriod  with infinite-scroll
+relationship OneToMany {
+	SafeKeepingProject to SafeKeepingPeriod
+}
+paginate SafeKeepingPeriod, SafeKeepingProject  with infinite-scroll
 //paginate Job with pagination
 
 // Use Data Transfert Objects (DTO)

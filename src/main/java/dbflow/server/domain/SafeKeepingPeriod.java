@@ -1,5 +1,6 @@
 package dbflow.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 /**
  * A SafeKeepingPeriod.
@@ -24,6 +24,9 @@ public class SafeKeepingPeriod implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "year")
+    private String year;
+
     @Column(name = "owner")
     private String owner;
 
@@ -39,11 +42,17 @@ public class SafeKeepingPeriod implements Serializable {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
+
     @Column(name = "background_color")
     private String backgroundColor;
 
     @Column(name = "text_color")
     private String textColor;
+
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "safeKeepingPeriods", allowSetters = true)
+    private SafeKeepingProject safeKeepingProject;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -52,6 +61,20 @@ public class SafeKeepingPeriod implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getYear() {
+        return year;
+    }
+
+    public SafeKeepingPeriod year(String year) {
+        this.year = year;
+        return this;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getOwner() {
@@ -117,6 +140,7 @@ public class SafeKeepingPeriod implements Serializable {
 
     public void setEndDate(LocalDateTime end) {
         this.endDate = end;
+
     }
 
     public String getBackgroundColor() {
@@ -143,6 +167,19 @@ public class SafeKeepingPeriod implements Serializable {
 
     public void setTextColor(String textColor) {
         this.textColor = textColor;
+    }
+
+    public SafeKeepingProject getSafeKeepingProject() {
+        return safeKeepingProject;
+    }
+
+    public SafeKeepingPeriod safeKeepingProject(SafeKeepingProject safeKeepingProject) {
+        this.safeKeepingProject = safeKeepingProject;
+        return this;
+    }
+
+    public void setSafeKeepingProject(SafeKeepingProject safeKeepingProject) {
+        this.safeKeepingProject = safeKeepingProject;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -172,6 +209,7 @@ public class SafeKeepingPeriod implements Serializable {
             ", description='" + getDescription() + "'" +
             ", start='" + getStartDate() + "'" +
             ", end='" + getEndDate() + "'" +
+            ", year='" + getYear() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
             "}";

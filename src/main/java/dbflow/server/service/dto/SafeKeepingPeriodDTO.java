@@ -1,7 +1,8 @@
 package dbflow.server.service.dto;
 
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ public class SafeKeepingPeriodDTO implements Serializable {
     
     private Long id;
 
+    private String year;
     private String owner;
 
     private String text;
@@ -25,7 +27,24 @@ public class SafeKeepingPeriodDTO implements Serializable {
 
     private String textColor;
 
-    private Boolean allDay;
+    private Long safeKeepingProjectId;
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+
+      private Boolean allDay;
     
     public SafeKeepingPeriodDTO() {
     	this.allDay = false;
@@ -103,6 +122,14 @@ public class SafeKeepingPeriodDTO implements Serializable {
         this.textColor = textColor;
     }
 
+    public Long getSafeKeepingProjectId() {
+        return safeKeepingProjectId;
+    }
+
+    public void setSafeKeepingProjectId(Long safeKeepingProjectId) {
+        this.safeKeepingProjectId = safeKeepingProjectId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,10 +155,12 @@ public class SafeKeepingPeriodDTO implements Serializable {
             ", owner='" + getOwner() + "'" +
             ", text='" + getText() + "'" +
             ", description='" + getDescription() + "'" +
+            ", year='" + getYear() + "'" +
             ", start='" + getStartDate() + "'" +
             ", end='" + getEndDate() + "'" +
             ", backgroundColor='" + getBackgroundColor() + "'" +
             ", textColor='" + getTextColor() + "'" +
+            ", safeKeepingProjectId=" + getSafeKeepingProjectId() +
             "}";
     }
 }

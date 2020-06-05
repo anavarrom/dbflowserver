@@ -1,6 +1,5 @@
 package dbflow.server.web.rest;
 
-
 import dbflow.server.service.SafeKeepingPeriodService;
 import dbflow.server.web.rest.errors.BadRequestAlertException;
 import dbflow.server.service.dto.SafeKeepingPeriodDTO;
@@ -11,7 +10,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -121,7 +119,6 @@ public class SafeKeepingPeriodResource {
     @DeleteMapping("/safe-keeping-periods/{id}")
     public ResponseEntity<Void> deleteSafeKeepingPeriod(@PathVariable Long id) {
         log.debug("REST request to delete SafeKeepingPeriod : {}", id);
-
         safeKeepingPeriodService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }

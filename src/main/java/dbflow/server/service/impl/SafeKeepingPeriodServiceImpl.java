@@ -84,7 +84,6 @@ public class SafeKeepingPeriodServiceImpl implements SafeKeepingPeriodService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete SafeKeepingPeriod : {}", id);
-
         safeKeepingPeriodRepository.deleteById(id);
     }
 }
