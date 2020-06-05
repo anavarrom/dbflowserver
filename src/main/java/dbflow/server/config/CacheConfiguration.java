@@ -48,6 +48,9 @@ public class CacheConfiguration {
             createCache(cm, dbflow.server.domain.User.class.getName() + ".authorities");
             createCache(cm, dbflow.server.domain.Appointment.class.getName());
             createCache(cm, dbflow.server.domain.Notification.class.getName());
+            createCache(cm, dbflow.server.domain.SafeKeepingProject.class.getName());
+            createCache(cm, dbflow.server.domain.SafeKeepingProject.class.getName() + ".safeKeepingPeriods");
+            createCache(cm, dbflow.server.domain.SafeKeepingPeriod.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,52 +1,52 @@
 {
-    "name": "Notification",
-    "fields": [
-        {
-            "fieldName": "subject",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "body",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "from",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "to",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "emittedDate",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "readDate",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "dueDate",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "status",
-            "fieldType": "NotificationStatus",
-            "fieldValues": "EMITTED,RECEIVED,READ"
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20200315164200",
-    "entityTableName": "notification",
-    "dto": "mapstruct",
-    "pagination": "infinite-scroll",
-    "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "embedded": false,
-    "clientRootFolder": "dbFlowServer",
-    "applications": "*",
-    "microserviceName": "dbFlowServer",
-    "angularJSSuffix": "mySuffix"
+  "name": "Notification",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "body",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "from",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "to",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emittedDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "readDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "NotificationStatus",
+      "fieldValues": "EMITTED,RECEIVED,READ"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200315164200",
+  "entityTableName": "notification",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "dbFlowServer",
+  "applications": "*",
+  "microserviceName": "dbFlowServer",
+  "angularJSSuffix": "mySuffix"
 }
